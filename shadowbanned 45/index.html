@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SHADOWBANNED</title>
+  <meta name="description" content="Shadowbanned. Visibility restricted." />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: #000; }
+    .gate {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      background: #000;
+    }
+    .gate video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+    .wash {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, rgba(0, 18, 0, 0.15), rgba(0, 8, 0, 0.55));
+    }
+    .rain {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .enter {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(2);
+      z-index: 3;
+      color: #fff;
+      background: transparent;
+      border: none;
+      padding: 16px 36px;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 13px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .enter::after {
+      content: "";
+      position: absolute;
+      left: 22%;
+      right: 9%;
+      top: 47%;
+      height: 5px;
+      background: #fff;
+      pointer-events: none;
+    }
+    .enter:hover {
+      color: #000;
+    }
+    @media (max-width: 860px) {
+      .gate { height: 100dvh; }
+      .gate video { object-fit: cover; object-position: center center; }
+      .enter { transform: translate(-50%, -50%) scale(1.35); }
+    }
+  </style>
+</head>
+<body>
+  <section class="gate">
+    <video id="gate-video" autoplay muted loop playsinline></video>
+    <canvas class="rain" id="rain"></canvas>
+    <a class="enter" href="home.html">Enter</a>
+  </section>
+  <script>
+    const gate = document.getElementById("gate-video");
+    const mobile = window.matchMedia("(max-width: 860px)").matches;
+    gate.src = mobile ? "videos/bb-tall.mp4" : "videos/bb-wide.mp4";
+    gate.play().catch(() => {});
+
+    const canvas = document.getElementById("rain");
+    const ctx = canvas.getContext("2d");
+    const glyphs = "0123456789";
+    let columns = [];
+    let fontSize = 16;
+    const trail = 18;
+
+    function size() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      fontSize = Math.max(14, Math.round(window.innerWidth / 90));
+      const gap = fontSize / 8;
+      const count = Math.ceil(canvas.width / gap) + 1;
+      columns = Array.from({ length: count }, () => ({
+        y: Math.random() * canvas.height,
+        speed: 1.4 + Math.random() * 2.2,
+        bright: Math.random() > 0.45,
+        chars: Array.from({ length: trail }, () => glyphs[Math.floor(Math.random() * glyphs.length)])
+      }));
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.font = fontSize + "px 'IBM Plex Mono', monospace";
+      ctx.textBaseline = "top";
+      const gap = fontSize / 8;
+      for (let i = 0; i < columns.length; i++) {
+        const col = columns[i];
+        const x = i * gap;
+        for (let t = 0; t < trail; t++) {
+          const fade = 1 - t / trail;
+          if (col.bright && t === 0) ctx.fillStyle = "rgba(255,255,255,1)";
+          else if (col.bright && t < 3) ctx.fillStyle = "rgba(255,255,255," + (0.75 * fade).toFixed(3) + ")";
+          else ctx.fillStyle = "rgba(255,255,255," + (fade * 0.42).toFixed(3) + ")";
+          ctx.fillText(col.chars[t], x, col.y - t * fontSize);
+        }
+        if (Math.random() > 0.94) col.chars[0] = glyphs[Math.floor(Math.random() * glyphs.length)];
+        col.chars.pop();
+        col.chars.unshift(glyphs[Math.floor(Math.random() * glyphs.length)]);
+        col.y += col.speed;
+        if (col.y - trail * fontSize > canvas.height) col.y = -fontSize;
+      }
+      requestAnimationFrame(draw);
+    }
+
+    size();
+    window.addEventListener("resize", size);
+    draw();
+  </script>
+</body>
+</html>

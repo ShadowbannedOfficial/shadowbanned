@@ -1,0 +1,17 @@
+How to swap pictures
+
+1. Open the folder named images.
+2. Replace a file with your photo, using the exact same name.
+   - logo.png sits one level up, next to index.html. That is the header logo.
+   - images/hero.jpg is the big photo on the home page.
+   - images/tee.jpg is the tee.
+   - images/hoodie.jpg is the hoodie.
+   - images/cap.jpg is the cap.
+3. The new file must use the same name, including .jpg or .png.
+   If your photo is called IMG_2044.png, rename it to tee.jpg before you drop it in.
+   On a Mac, the name is at the top of the file window. On Windows, turn on file extensions so you do not end up with tee.jpg.jpg.
+4. Save, then refresh the browser. If the old picture stays, hold Shift and click reload.
+
+jpg or png both work if the name matches what the page asks for. Square or portrait photos look best. Very wide phone screenshots will get cropped.
+
+To change words or prices, open shop.html or index.html in TextEdit or Notepad, edit the text between the tags, and save. Do not rename index.html.
