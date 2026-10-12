@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — SHADOWBANNED</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif&display=swap" />
+  <link rel="stylesheet" href="styles.css?v=8" />
+</head>
+<body>
+  <header class="nav">
+    <a class="logo" href="index.html"><img src="logo.png" alt="Shadowbanned" /></a>
+    <button class="menu-toggle" type="button" aria-label="Menu">Menu</button>
+    <nav class="nav-links">
+      <a href="home.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a class="active" href="contact.html">Contact</a>
+    </nav>
+    <a class="cart-pill" href="cart.html" data-cart-count>Bag 0</a>
+  </header>
+  <section class="shop-hero">
+    <img src="images/contact-hero.jpg?v=2" alt="Shadowbanned" />
+    <div class="shop-hero-copy">
+      <div class="kicker">Drop 01 · Restricted visibility</div>
+      <div>
+        <h1><span class="redact">Send a signal.</span></h1>
+        <p class="lede"><span class="redact">Name, email, and what you need. It opens in your mail app.</span></p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <form data-contact>
+      <input name="name" placeholder="Name" required />
+      <input name="email" type="email" placeholder="Email" required />
+      <textarea name="message" rows="6" placeholder="What do you need?" required></textarea>
+      <button class="btn" type="submit">SEND</button>
+    </form>
+    <p class="notice" style="margin-top:18px"><span class="redact">This button sends your message to info@shadowbanned.com.</span></p>
+  </section>
+  <footer><div>@shadowbannedofficial</div><div>info@shadowbannedofficial.com</div></footer>
+  <script src="app.js"></script>
+</body>
+</html>
