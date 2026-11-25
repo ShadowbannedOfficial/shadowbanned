@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>SHADOWBANNED</title>
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <meta name="googlebot" content="noindex, nofollow" />
+  <meta name="referrer" content="no-referrer" />
+  <link rel="stylesheet" href="pitch.css" />
+</head>
+<body>
+  <!-- Figures and placeholders: pitch-data.js. Not linked from the site nav, footer, or sitemap. -->
+  <div class="chrome">
+    <p class="chrome-index"><span id="idx">01</span><span id="lbl">Title</span></p>
+    <div class="chrome-controls">
+      <button type="button" id="prev" aria-label="Previous slide">←</button>
+      <button type="button" id="next" aria-label="Next slide">→</button>
+    </div>
+  </div>
+  <main id="deck" tabindex="-1" aria-label="SHADOWBANNED"></main>
+  <div class="chrome-bottom">
+    <div id="ticks" role="tablist" aria-label="Slides"></div>
+    <p class="hint"><span class="hint-keys">Arrow keys</span><span class="hint-swipe">Swipe</span></p>
+  </div>
+  <noscript><p class="noscript">This page reads its figures from pitch-data.js and needs JavaScript.</p></noscript>
+  <script src="pitch-data.js"></script>
+  <script src="pitch.js"></script>
+</body>
+</html>
