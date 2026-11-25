@@ -1,0 +1,3 @@
+# The investor deck is unlisted. This is not access control.
+User-agent: *
+Disallow: /pitch
